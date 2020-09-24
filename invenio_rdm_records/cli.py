@@ -7,6 +7,10 @@
 # it under the terms of the MIT License; see LICENSE file for more details.
 
 """Command-line tools for demo module."""
+
+# TODO: revamp according to new data model.
+
+
 import datetime
 import random
 import uuid

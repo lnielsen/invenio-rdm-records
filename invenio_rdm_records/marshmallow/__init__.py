@@ -8,6 +8,11 @@
 
 """Schemas for marshmallow."""
 
+# TODO:
+# - Integrate into schemas package
+# - Update mappings
+# - Change doc type to "_doc"
+
 from .json import BibliographicRecordSchemaV1, MetadataSchemaV1
 
 __all__ = ('BibliographicRecordSchemaV1', 'MetadataSchemaV1')

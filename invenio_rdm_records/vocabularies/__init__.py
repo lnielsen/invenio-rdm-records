@@ -8,6 +8,11 @@
 
 """Models for Invenio RDM Records."""
 
+# TODO:
+# - Factor out into a separate module that can be used for both grants,
+# funders, licenses, resource types, etc
+# - Implement Records-Resources suggestion functionality (plus indexing part)
+
 from os.path import dirname, join
 
 from flask import current_app

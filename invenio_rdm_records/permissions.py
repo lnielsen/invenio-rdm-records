@@ -8,6 +8,13 @@
 
 """Permissions for Invenio RDM Records."""
 
+# TODO: Create permission policy
+# - Access component
+#   - define record structure for access
+#   - metadata only etc record.
+#   - define need generators
+# - Integrate with communities
+
 from invenio_records_permissions.generators import AnyUser
 from invenio_records_permissions.policies import RecordPermissionPolicy
 

@@ -8,6 +8,8 @@
 
 """Bibliographic Record specific links."""
 
+# TODO: Rewrite according to new links scheme.
+
 from flask import current_app
 from invenio_records_resources.links import RecordLinkBuilder
 

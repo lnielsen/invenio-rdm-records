@@ -8,6 +8,13 @@
 
 """DataCite-based data model for Invenio."""
 
+# TODO:
+# - Remove RECORDS_REST_ENDPOINTS
+# - move facets to resourceconfig
+# - remove RECORDS_FILES_REST_ENDPOINTS
+# - revamp files permission factory
+# - remove PIDSTORE_RECID_FIELD
+
 from invenio_indexer.api import RecordIndexer
 from invenio_records_files.api import Record
 from invenio_records_permissions import record_create_permission_factory, \

@@ -8,6 +8,13 @@
 
 """Bibliographic Record Resource."""
 
+# TODO:
+# - Fix config variable names -> shorter
+# - Rename to bibliographic record -> rdmrecord
+# - Use Flask-Resource dResponse and JSONSerializer
+# - Split config and resource? (check with mock module)
+# - Remove config where we can rely on the defaults
+
 from invenio_drafts_resources.resources import DraftActionResource, \
     DraftActionResourceConfig, DraftResource, DraftResourceConfig
 from invenio_drafts_resources.serializers import RecordDraftJSONSerializer

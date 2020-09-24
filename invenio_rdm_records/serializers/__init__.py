@@ -8,6 +8,8 @@
 
 """Record serializers."""
 
+# TODO: Remove
+
 from invenio_records_rest.serializers.json import JSONSerializer
 from invenio_records_rest.serializers.response import record_responsify, \
     search_responsify

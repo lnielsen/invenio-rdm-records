@@ -8,6 +8,8 @@
 
 """Utils for Invenio RDM Records."""
 
+# TODO: remove
+
 from flask import current_app
 
 

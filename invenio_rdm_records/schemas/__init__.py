@@ -8,6 +8,11 @@
 
 """RDM record schemas."""
 
+# TODO:
+# - Move AttrSchema to marshmallow_utils
+# - Use AttrSchema, NestedAttributeField from marshmallow_utils
+# - Remove v1 suffix
+
 from marshmallow import INCLUDE, EXCLUDE, Schema as _Schema, fields, missing
 
 from .access import AccessSchemaV1

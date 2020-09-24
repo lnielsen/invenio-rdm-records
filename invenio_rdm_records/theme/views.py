@@ -13,6 +13,10 @@ templates and static files located in the folders of the same names next to
 this file.
 """
 
+# TODO:
+# - review to see if we move around some of the filters, or put them in a
+# different file.
+
 from operator import itemgetter
 from os.path import splitext
 

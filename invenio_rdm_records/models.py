@@ -7,6 +7,11 @@
 
 """Bibliographic Record and Draft models."""
 
+# TODO:
+# - rename to rdm record
+# - change table names to rdmrecords_metadata
+# - subclass from invenio-records-resources
+
 from invenio_db import db
 from invenio_drafts_resources.drafts import DraftBase, DraftMetadataBase
 from invenio_records.api import Record

@@ -9,6 +9,9 @@
 
 """PIDManager."""
 
+# TODO: Determine what happens in drafts-resources? do we still have a pid
+# manager.
+
 from invenio_drafts_resources.services.pid_manager import PIDManager, \
     PIDManagerConfig
 

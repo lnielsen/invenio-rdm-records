@@ -8,6 +8,8 @@
 
 """Search Engine's class."""
 
+# TODO: remove
+
 from invenio_search import RecordsSearch
 
 

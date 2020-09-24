@@ -7,6 +7,13 @@
 # it under the terms of the MIT License; see LICENSE file for more details.
 
 """DataCite-based data model for Invenio."""
+
+# TODO:
+# - Disconnect signals
+# - Fix init_config
+# - Move before_record_index_hook into Elasticsearch dumper as an extension.
+
+
 from celery import shared_task
 from invenio_db import db
 from invenio_files_rest.signals import file_deleted, file_uploaded

@@ -8,6 +8,8 @@
 
 """RDM records celery tasks."""
 
+# TODO: remove
+
 from invenio_db import db
 from invenio_records_files.api import Record
 from invenio_records_files.models import RecordsBuckets

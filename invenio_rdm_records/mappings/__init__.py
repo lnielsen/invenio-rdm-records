@@ -7,3 +7,6 @@
 # it under the terms of the MIT License; see LICENSE file for more details.
 
 """RDM DataCite based Elasticsearch mappings."""
+
+# TODO:
+# - remove v6 and v7 folders
