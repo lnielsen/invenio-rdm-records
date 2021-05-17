@@ -3,6 +3,7 @@
 # Copyright (C) 2020-2021 CERN.
 # Copyright (C) 2020 Northwestern University.
 # Copyright (C) 2021 TU Wien.
+# Copyright (C) 2021 data-futures.
 #
 # Invenio-RDM-Records is free software; you can redistribute it and/or modify
 # it under the terms of the MIT License; see LICENSE file for more details.
@@ -10,15 +11,25 @@
 """Bibliographic Record Resource."""
 
 from flask import abort, g
-from flask_resources import request_parser, resource_requestctx, \
-    response_handler, route
+from flask_cors import cross_origin
+from flask_resources import ResponseHandler, request_parser, \
+    resource_requestctx, response_handler, route, with_content_negotiation
 from invenio_drafts_resources.resources import RecordResource
 from invenio_records_resources.resources.records.resource import \
     request_data, request_search_args, request_view_args
 from marshmallow_utils.fields import SanitizedUnicode
 
+from .serializers import IIIFPresiSerializer
+
 request_pids_args = request_parser(
     {"client": SanitizedUnicode()}, location='args'
+)
+
+with_iiif_content_negotiation = with_content_negotiation(
+    response_handlers={
+        "application/ld+json": ResponseHandler(IIIFPresiSerializer()),
+    },
+    default_accept_mimetype='application/ld+json',
 )
 
 
@@ -37,10 +48,40 @@ class RDMRecordResource(RecordResource):
         url_rules += [
             route("POST", p(routes["item-pids-reserve"]), self.pids_reserve),
             route("DELETE", p(routes["item-pids-reserve"]), self.pids_discard),
+            route(
+                "GET",
+                p(routes["item-iiif-manifest"]),
+                partial(self.read_iiif_manifest, draft=False)
+                apply_decorators=False
+            ),
+            route(
+                "GET",
+                p(routes["item-draft-iiif-manifest"]),
+                partial(self.read_iiif_manifest, draft=True),
+                apply_decorators=False
+            ),
         ]
 
         return url_rules
 
+    #
+    # IIIF Manifest - not all clients support content-negotiation so we need a
+    # full endpoint.
+    #
+    @cross_origin(origin="*", methods=["GET"])
+    @with_iiif_content_negotiation
+    @request_view_args
+    @response_handler()
+    def read_iiif_manifest(self, draft=False):
+        """Return IIIF Manifest."""
+        pid = resource_requestctx.view_args["pid_value"]
+        read = self.service.read_draft if draft else self.service.read
+        record = read(id_=pid, identity=g.identity)
+        return record, 200
+
+    #
+    # External persistent identifiers endpoints
+    #
     @request_pids_args
     @request_view_args
     @response_handler()

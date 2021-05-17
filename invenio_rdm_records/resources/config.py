@@ -11,17 +11,19 @@
 import marshmallow as ma
 from flask_resources import HTTPJSONException, JSONSerializer, \
     ResponseHandler, create_error_handler
+from flask_resources.serializers.json import MarshmallowJSONSerializer
 from invenio_drafts_resources.resources import RecordResourceConfig
 from invenio_records_resources.resources.files import FileResourceConfig
 
 from .serializers import UIJSONSerializer
+from .serializers.iiifp import IIIFPresiSchema
 
 #
 # Response handlers
 #
 record_serializers = {
     "application/json": ResponseHandler(JSONSerializer()),
-    "application/vnd.inveniordm.v1+json": ResponseHandler(UIJSONSerializer())
+    "application/vnd.inveniordm.v1+json": ResponseHandler(UIJSONSerializer()),
 }
 
 
@@ -35,9 +37,9 @@ class RDMRecordResourceConfig(RecordResourceConfig):
     url_prefix = "/records"
 
     routes = RecordResourceConfig.routes
-
-    # PIDs
     routes["item-pids-reserve"] = "/<pid_value>/draft/pids/<pid_type>"
+    routes["item-iiif-manifest"] = "/<pid_value>/iiif/manifest"
+    routes["item-draft-iiif-manifest"] = "/<pid_value>/draft/iiif/manifest"
 
     request_view_args = {
         "pid_value": ma.fields.Str(),
